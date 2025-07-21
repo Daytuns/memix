@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { config } from 'dotenv';
 import simpleGit from 'simple-git';
 import inquirer from 'inquirer';

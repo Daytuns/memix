@@ -1,21 +1,22 @@
 {
   "name": "memix",
   "version": "1.0.0",
-  "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
+  "description": "AI-powered CLI tool to generate clean git commit messages",
+  "bin": {
+    "memix": "./bin/memix.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "type": "module",
+  "main": "bin/memix.js",
+  "scripts": {
+    "start": "node bin/memix.js"
+  },
+  "author": "Dayton Baldizón",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^5.4.1",
     "dotenv": "^17.2.0",
     "inquirer": "^12.8.0",
     "node-fetch": "^3.3.2",
-    "openai": "^5.10.1",
     "simple-git": "^3.28.0"
   }
 }
