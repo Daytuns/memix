@@ -1,6 +1,6 @@
 {
   "name": "memix",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI-powered CLI tool to generate clean git commit messages",
   "bin": {
     "memix": "./bin/memix.js"
