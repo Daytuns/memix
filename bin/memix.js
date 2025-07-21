@@ -30,7 +30,7 @@ async function generateCommitMessage(diff) {
         },
         {
         role: 'user',
-        content: `Given the following git diff, write a single concise sentence suitable as a commit message. Do not include bullet points, code blocks, or extra explanation.\n\nGit diff:\n${diff}`
+        content: `Given the following git diff, write a single concise sentence suitable as a commit message. Do not include bullet points or code blocks.\n\nGit diff:\n${diff}`
         }
     ],
     temperature: 0.5,
