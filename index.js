@@ -20,7 +20,7 @@ async function generateCommitMessage(diff) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'mixtral-8x7b-32768',
+      model: 'mistral-saba-24b',
       messages: [
         {
           role: 'system',
@@ -37,8 +37,15 @@ async function generateCommitMessage(diff) {
   });
 
   const data = await response.json();
+
+  if (!response.ok) {
+    console.error('Groq API error:', data);
+    return null;
+  }
+
   return data.choices?.[0]?.message?.content?.trim();
 }
+
 
 async function main() {
   const diff = await getStagedDiff();
@@ -49,6 +56,12 @@ async function main() {
   }
 
   const message = await generateCommitMessage(diff);
+
+  if (!message) {
+        console.log(chalk.red('Failed to generate commit message.'));
+        return;
+  }
+
 
 
   console.log(chalk.green('\nSuggested commit message:\n'));
