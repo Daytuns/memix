@@ -24,13 +24,29 @@ async function generateCommitMessage(diff) {
     body: JSON.stringify({
     model: 'mistral-saba-24b',
     messages: [
+                {
+          role: 'system',
+          content: `You are a professional software engineer. Based on a git diff, write a specific, concise commit message that clearly describes what changed and why.
+          Requirements:
+          - Use present tense ("add feature", not "added").
+          - Be specific: if the README was updated with setup instructions, say so.
+          - Never say "update README" or "update file" — describe what the update is.
+          - Do not reference "this diff", "the following", or file names unless essential.
+          - Avoid vague verbs like "change", "modify", "update" unless followed by a specific reason.
+          - No greetings, no colons, no markdown formatting, no explanations — only the commit message.
+
+          Examples:
+          - Add setup instructions for Groq API key in README
+          - Clarify usage example in README.md
+          - Improve install section to avoid confusion for Windows users
+          - Fix typo in README instructions for .env setup
+          - Add note on security tradeoffs in API key usage
+
+          The goal is to write commit messages as if a human carefully summarized the purpose of the change.`
+          },
         {
-        role: 'system',
-        content: 'You are a senior software engineer writing clean, conventional git commit messages.'
-        },
-        {
-        role: 'user',
-        content: `Given the following git diff, write a single concise sentence suitable as a commit message. Do not include bullet points or code blocks.\n\nGit diff:\n${diff}`
+          role: 'user',
+          content: `Git diff:\n${diff}`
         }
     ],
     temperature: 0.5,
