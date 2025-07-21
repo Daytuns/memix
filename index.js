@@ -20,20 +20,20 @@ async function generateCommitMessage(diff) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'mistral-saba-24b',
-      messages: [
+    model: 'mistral-saba-24b',
+    messages: [
         {
-          role: 'system',
-          content: 'You are a senior software engineer writing clean, conventional git commit messages.',
+        role: 'system',
+        content: 'You are a senior software engineer writing clean, conventional git commit messages.'
         },
         {
-          role: 'user',
-          content: `Write a concise git commit message based on this diff:\n${diff}`,
-        },
-      ],
-      temperature: 0.5,
-      max_tokens: 128,
-    }),
+        role: 'user',
+        content: `Given the following git diff, write a single concise sentence suitable as a commit message. Do not include bullet points, code blocks, or extra explanation.\n\nGit diff:\n${diff}`
+        }
+    ],
+    temperature: 0.5,
+    max_tokens: 128,
+    })
   });
 
   const data = await response.json();
